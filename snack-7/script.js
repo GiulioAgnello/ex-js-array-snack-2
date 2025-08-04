@@ -3,10 +3,15 @@ import books from "../database.js";
 console.log(books);
 
 // Funzione che restituisce quante volte un tag è stato usato tra tutti i libri
-function tagCounts(tag) {
-  return books.reduce((count, book) => {
-    return count + book.tags.filter((t) => t === tag).length;
-  }, 0);
-}
+const tagCount = books.reduce((count, book) => {
+  book.tags.forEach((tag) => {
+    if (count[tag]) {
+      count[tag]++;
+    } else {
+      count[tag] = 1;
+    }
+  });
+  return count;
+}, {});
 
-console.log(tagCounts("css"));
+console.log(tagCount);
