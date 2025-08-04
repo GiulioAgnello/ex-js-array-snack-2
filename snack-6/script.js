@@ -10,7 +10,16 @@ const areThereAvailableBooks = books.some((b) => b.available === true);
 
 console.log(areThereAvailableBooks);
 
-const bookByPrice = books.map((b) => {
-  const priceNumber = parseFloat(b.price);
-  return;
+// ordine crescente
+const booksByPrice = books.slice().sort((a, b) => {
+  return parseFloat(a.price) - parseFloat(b.price);
 });
+
+console.log(booksByPrice);
+
+// ordine di disponibilità (prima disponibili, poi non disponibili)
+const booksByPricein = booksByPrice.sort((a, b) => {
+  return (b.available === true) - (a.available === true);
+});
+
+console.log(booksByPricein);
